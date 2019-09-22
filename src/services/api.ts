@@ -20,35 +20,38 @@ class Api implements IApi {
         this.url = url;
     }
 
-    createEntity(entityName: string) {
+    createEntity(entityName: string): void {
         this.endpoints[entityName] = this.createBasicEndpoints(entityName);
     }
 
-    createEntities(arrayOfEntity: string[]) {
+    createEntities(arrayOfEntity: string[]): void {
         arrayOfEntity.forEach(this.createEntity);
     }
 
-    createBasicEndpoints(entityName: string) {
+    createBasicEndpoints(entityName: string): IEndpoints {
         const endpoints: IEndpoints = {};
 
         const resourceURL = `${this.url}/${entityName}`;
 
-        endpoints.getAll = (params = {}, config = {}) =>
+        endpoints.getAll = (params = {}, config = {}): Promise<AxiosResponse> =>
             axios.get(resourceURL, {params, ...config});
 
-        endpoints.getOne = (id, config = {}) =>
+        endpoints.getOne = (id, config = {}): Promise<AxiosResponse> =>
             axios.get(`${resourceURL}/${id}`, config);
 
-        endpoints.create = (toCreate, config = {}) =>
+        endpoints.create = (toCreate, config = {}): Promise<AxiosResponse> =>
             axios.post(resourceURL, toCreate, config);
 
-        endpoints.update = (toUpdate: {id: string}, config = {}) =>
+        endpoints.update = (
+            toUpdate: {id: string},
+            config = {}
+        ): Promise<AxiosResponse> =>
             axios.put(`${resourceURL}/${toUpdate.id}`, toUpdate, config);
 
-        endpoints.patch = (id, toPatch, config = {}) =>
+        endpoints.patch = (id, toPatch, config = {}): Promise<AxiosResponse> =>
             axios.patch(`${resourceURL}/${id}`, toPatch, config);
 
-        endpoints.delete = (id, config = {}) =>
+        endpoints.delete = (id, config = {}): Promise<AxiosResponse> =>
             axios.delete(`${resourceURL}/${id}`, config);
 
         return endpoints;

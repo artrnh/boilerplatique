@@ -4,6 +4,7 @@
         ["@babel/plugin-proposal-decorators", {"legacy": true}],
         ["@babel/plugin-proposal-class-properties", {"loose": true}],
         "styled-components",
-        "ramda"
+        "ramda",
+        ["@babel/transform-runtime"]
     ]
 }
