@@ -5,7 +5,7 @@
     "scripts": {
         "dev": "cross-env NODE_ENV=development webpack-dev-server --color --progress",
         "build": "cross-env NODE_ENV=production webpack --color --progress",
-        "start": "serve dist"
+        "start": "serve public"
     },
     "author": "artrnh",
     "license": "MIT",
@@ -27,6 +27,7 @@
         "@babel/preset-env": "^7.6.0",
         "@babel/preset-react": "^7.0.0",
         "@babel/preset-typescript": "^7.6.0",
+        "@babel/runtime": "^7.6.2",
         "@types/node": "^12.7.5",
         "@types/ramda": "^0.26.22",
         "@types/reach__router": "^1.2.5",
